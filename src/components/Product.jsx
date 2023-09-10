@@ -37,7 +37,10 @@ const Product = ({ post }) => {
 
       <div className="flex justify-between gap-12 items-center w-full mt-5">
         <div>
-          <p className="text-green-600 font-semibold">₹{post.actual_price}</p>
+          <del className="text-green-600 font-semibold">
+            ₹{post.actual_price}
+          </del>
+          <p className="text-green-600 font-semibold">₹{post.selling_price}</p>
         </div>
 
         {cart.some((p) => p.id == post.id) ? (

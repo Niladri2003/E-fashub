@@ -32,12 +32,12 @@ const Product = ({ post }) => {
         </p>
       </div>
       <div className="h-[180px]">
-        <img src={post.image} className="h-full w-full " />
+        <img src={post.images[0]} className="h-full w-full " />
       </div>
 
       <div className="flex justify-between gap-12 items-center w-full mt-5">
         <div>
-          <p className="text-green-600 font-semibold">${post.price}</p>
+          <p className="text-green-600 font-semibold">₹{post.actual_price}</p>
         </div>
 
         {cart.some((p) => p.id == post.id) ? (

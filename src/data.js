@@ -1516,7 +1516,6 @@ export const productData = [
       "https://rukminim1.flixcart.com/image/128/128/jtvtz0w0/vest/n/h/q/s-ath-9005-black-athliv-original-imafezbuqzku6hs7.jpeg?q=70",
       "https://rukminim1.flixcart.com/image/128/128/jtvtz0w0/vest/n/h/q/l-ath-9005-black-athliv-original-imaferkwffuxqvk3.jpeg?q=70",
       "https://rukminim1.flixcart.com/image/128/128/jtx9evk0/vest/n/h/q/m-ath-9005-black-athliv-original-imaff3whjxhsmnta.jpeg?q=70",
-      "https://rukminim1.flixcart.com/image/128/128/jtvtz0w0/vest/n/h/q/l-ath-9005-black-athliv-original-imaff3wmfdvp28ja.jpeg?q=70",
     ],
     out_of_stock: false,
     pid: "VESFF4SWHKW5VBQQ",

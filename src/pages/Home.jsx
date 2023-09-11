@@ -9,7 +9,63 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
   const [products, setProducts] = useState([]);
-  console.log("Hello");
+
+  const [selectedCategory, setselectedCategory] = useState(null);
+  const [query, setQuery] = useState("");
+  const handleInputChange = (event) => {
+    setQuery(event.target.value);
+  };
+  const filteredItems = productData.filter(
+    (product) => product.title.toLowerCase().indexOf(query.toLowerCase()) !== -1
+  );
+
+  // ----------- Radio Filtering -----------
+  const handleChange = (event) => {
+    setselectedCategory(event.target.value);
+    console.log(selectedCategory);
+  };
+  // ------------ Button Filtering -----------
+  const handleClick = (event) => {
+    setselectedCategory(event.target.value);
+    //console.log(selectedCategory);
+  };
+
+  //-------------------------------------------------
+  function filteredData(products, selected, query) {
+    let filteredProducts = products;
+
+    // Filtering Input Items
+    // if (query) {
+    //   filteredProducts = filteredItems;
+    // }
+
+    //Applying selected filter
+    if (selected) {
+      if (selected === 1000) {
+        filteredProducts = filteredProducts.filter(
+          ({ selling_price }) => selling_price > 1000
+        );
+      } else {
+        filteredProducts = filteredProducts.filter(
+          ({ sub_category, title, selling_price }) =>
+            sub_category === selected ||
+            title === selected ||
+            (selling_price < selected && selling_price > selected - 300)
+        );
+      }
+    }
+    console.log(filteredProducts);
+
+    // return filteredProducts.map(({ post }) => (
+    //   <Link key={post._id} to={`/product/${post._id}`}>
+    //     <Product post={post} />
+    //   </Link>
+    // ));
+    return filteredProducts;
+  }
+  const result = filteredData(productData, selectedCategory, query);
+  console.log(result);
+
   let subCategory = [];
   async function fetchProductData() {
     setLoading(true);
@@ -20,7 +76,7 @@ const Home = () => {
 
       setPosts(data);
     } catch (error) {
-      console.log("Error aagya ji");
+      console.log("Error");
       setPosts([]);
     }
     setLoading(false);
@@ -30,17 +86,17 @@ const Home = () => {
     fetchProductData();
     setProducts(productData);
   }, []);
-  console.log(products);
   subCategory = [
     ...new Set(productData.map((product) => product.sub_category)),
   ];
+
   console.log(subCategory);
 
   return (
     <div className="flex">
       {/* Sidebar (visible on large screens) */}
       <aside className="hidden lg:block w-1/4 bg-gray-200 p-4">
-        <Sidebar />
+        <Sidebar handleChange={handleChange} subCategory={subCategory} />
         {/* Add more filters as needed */}
       </aside>
 
@@ -56,16 +112,15 @@ const Home = () => {
                 <button
                   className="p-[10px] border-[0.6px] rounded-md"
                   key={idx}
+                  value={category}
+                  onClick={handleClick}
                 >
                   {category}
                 </button>
               ))}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-6xl pl-2 lg:p-2 md:p-2 mx-auto min-h-[80vh] justify-center sm:mx-auto">
-              {/* {posts.map((post) => (
-              <Product key={post.id} post={post} />
-            ))} */}
-              {products.map((post) => (
+              {result.map((post) => (
                 <Link key={post._id} to={`/product/${post._id}`}>
                   <Product post={post} />
                 </Link>
@@ -73,7 +128,7 @@ const Home = () => {
             </div>
           </div>
         ) : (
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center min-h-screen">
             <p>No Data Found</p>
           </div>
         )}

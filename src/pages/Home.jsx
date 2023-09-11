@@ -127,7 +127,7 @@ const Home = () => {
               <p>Recommended</p>
               {subCategory.map((category, idx) => (
                 <button
-                  className="p-[10px] border-[0.6px] rounded-md"
+                  className="p-[10px] border-[0.6px] rounded-md hover:bg-[#ffffff]"
                   key={idx}
                   value={category}
                   onClick={handleClick}

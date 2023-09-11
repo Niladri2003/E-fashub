@@ -8,7 +8,7 @@ import ProductDetails from "./pages/ProductDetails";
 const App = () => {
   return (
     <div>
-      <div className="bg-slate-900">
+      <div className="text-black w-full bg-[#1f8e98]">
         <Navbar />
       </div>
       <Routes>

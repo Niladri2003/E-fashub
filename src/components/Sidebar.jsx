@@ -3,13 +3,14 @@ import Input from "./Sidebar/Input";
 
 const Sidebar = ({ handleChange, subCategory }) => {
   return (
-    <div className="flex flex-col gap-3">
-      <h2 className="text-lg font-semibold mb-4">Filters</h2>
+    <div className="flex flex-col gap-3  ">
+      <h2 className="text-lg font-semibold mb-4 text-center">Filters</h2>
+      <div className="h-[1px] w-full bg-slate-400"></div>
       {/* Price Filter */}
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 lg:pl-20">
         <h2 className="text-lg font-bold">Price</h2>
 
-        <label className="sidebar-label-container">
+        <label className="sidebar-label-container flex items-center">
           <input
             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2"
             onChange={handleChange}
@@ -41,18 +42,18 @@ const Sidebar = ({ handleChange, subCategory }) => {
           name="test2"
         />
 
-        <Input
+        {/* <Input
           handleChange={handleChange}
           value={1000}
           title=" Over  ₹1000"
           name="test2"
-        />
+        /> */}
       </div>
       {/* Color Filter */}
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 lg:pl-20">
         <h2 className="text-lg font-semibold mb-4">Category</h2>
 
-        <label className="sidebar-label-container">
+        <label className="sidebar-label-container flex items-center">
           <input
             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2"
             onChange={handleChange}

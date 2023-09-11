@@ -1,6 +1,7 @@
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { add, remove } from "../redux/Slices/CartSlice";
+import { AiFillStar } from "react-icons/ai";
 
 const Product = ({ post }) => {
   const { cart } = useSelector((state) => state);
@@ -18,11 +19,11 @@ const Product = ({ post }) => {
 
   return (
     <div
-      className="flex flex-col items-center justify-between 
-    hover:scale-105 transition duration-300 ease-in gap-3 p-4 mt-10 ml-5 rounded-xl outline"
+      className="flex flex-col items-center lg:justify-between 
+    transition duration-300 ease-in lg:gap-3 p-4 lg:mt-10 lg:ml-5 ml-2 mr-4 mb-2 mt-2 rounded-xl  bg-white"
     >
-      <div>
-        <p className="text-gray-700 font-semibold text-lg text-left truncate w-40 mt-1">
+      <div className="">
+        <p className="text-gray-700 font-semibold lg:text-lg lg:text-left truncate  lg:w-40 mt-1 lg:p-0 ">
           {post.title}
         </p>
       </div>
@@ -35,20 +36,27 @@ const Product = ({ post }) => {
         <img src={post.images[0]} className="h-full w-full " />
       </div>
 
-      <div className="flex justify-between gap-12 items-center w-full mt-5">
-        <div>
-          <del className="text-green-600 font-semibold">
-            ₹{post.actual_price}
-          </del>
-          <p className="text-green-600 font-semibold">₹{post.selling_price}</p>
+      <div className="flex flex-col justify-between lg:gap-6 items-center w-full mt-5">
+        <div className="flex flex-row justify-around w-full">
+          <div className="flex flow-row gap-2">
+            <del className="text-green-600 font-semibold">
+              ₹{post.actual_price}
+            </del>
+            <p className="text-green-600 font-semibold">
+              ₹{post.selling_price}
+            </p>
+          </div>
+          <div className="flex items-center">
+            <p>{post.average_rating} </p>
+            <AiFillStar />
+          </div>
         </div>
-
-        {cart.some((p) => p.id == post.id) ? (
+        {cart.some((p) => p._id == post._id) ? (
           <button
             className="text-gray-700 border-2 border-gray-700 rounded-full font-semibold 
           text-[12px] p-1 px-3 uppercase 
           hover:bg-gray-700
-          hover:text-white transition duration-300 ease-in"
+          hover:text-white transition duration-300 ease-in w-full lg:h-12 h-10"
             onClick={removeFromCart}
           >
             Remove Item
@@ -58,10 +66,9 @@ const Product = ({ post }) => {
             className="text-gray-700 border-2 border-gray-700 rounded-full font-semibold 
           text-[12px] p-1 px-3 uppercase 
           hover:bg-gray-700
-          hover:text-white transition duration-300 ease-in"
-            onClick={addToCart}
+          hover:text-white transition duration-300 ease-in w-full lg:h-12 h-10"
           >
-            Add to Cart
+            Buy Now
           </button>
         )}
       </div>
